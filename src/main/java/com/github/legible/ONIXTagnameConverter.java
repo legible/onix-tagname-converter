@@ -1,4 +1,4 @@
-package com.legible.onixtagnameconverter;
+package com.github.legible;
 
 import net.sf.saxon.s9api.*;
 
@@ -7,7 +7,6 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.URIResolver;
 import javax.xml.transform.stream.StreamSource;
 import java.io.*;
-import java.nio.file.Paths;
 
 /**
  * ONIXTagnameConverter

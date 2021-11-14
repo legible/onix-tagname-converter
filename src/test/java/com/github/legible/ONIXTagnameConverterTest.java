@@ -1,4 +1,4 @@
-package com.legible.onixtagnameconverter;
+package com.github.legible;
 
 import static org.junit.Assert.assertThat;
 import static org.xmlunit.matchers.CompareMatcher.isIdenticalTo;
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
-import com.legible.onixtagnameconverter.ONIXTagnameConverter.ONIXTagnameConverterException;
+import com.github.legible.ONIXTagnameConverter.ONIXTagnameConverterException;
 
 import org.junit.Test;
 

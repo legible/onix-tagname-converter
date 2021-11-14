@@ -1,9 +1,9 @@
-package com.legible.onixtagnameconverter;
+package com.github.legible;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
-import com.legible.onixtagnameconverter.ONIXTagnameConverter.ONIXTagnameConverterException;
+import com.github.legible.ONIXTagnameConverter.ONIXTagnameConverterException;
 
 public class App {
   public static void main(String[] args) throws ONIXTagnameConverterException {
