@@ -17,7 +17,7 @@ ONIX for Books 3.0 tagname converter in Java
 ```
 
 ```java
-import com.legible.onixtagnameconverter.ONIXTagnameConverter;
+import com.github.legible.ONIXTagnameConverter;
 import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 
