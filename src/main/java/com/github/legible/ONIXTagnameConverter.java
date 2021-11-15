@@ -71,7 +71,7 @@ public class ONIXTagnameConverter {
     }
   }
 
-  public void transform(Source source, File outputFile) throws ONIXTagnameConverterException {
+  public void convert(Source source, File outputFile) throws ONIXTagnameConverterException {
     try {
       this.convert(source, this.processor.newSerializer(outputFile));
     } catch (SaxonApiException e) {
