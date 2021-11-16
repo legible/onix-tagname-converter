@@ -9,6 +9,6 @@ public class App {
   public static void main(String[] args) throws ONIXTagnameConverterException {
     ONIXTagnameConverter converter = new ONIXTagnameConverter();
     Source source = new StreamSource(System.in);
-    converter.convert(source, System.out);
+    converter.convertToShortTags(source, System.out);
   }
 }
