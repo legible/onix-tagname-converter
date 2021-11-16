@@ -29,7 +29,7 @@ public class ONIXTagnameConverterTest {
 
     Source source = new StreamSource(referenceNamesSample);
     StringWriter writer = new StringWriter();
-    tagTransformer.convert(source, writer);
+    tagTransformer.convertToShortTags(source, writer);
 
     String actual = writer.toString();
     String expected = new BufferedReader(new InputStreamReader(shortTagsSample, StandardCharsets.UTF_8)).lines()
@@ -48,11 +48,47 @@ public class ONIXTagnameConverterTest {
 
     Source source = new StreamSource(shortTagsSample);
     StringWriter writer = new StringWriter();
-    tagTransformer.convert(source, writer);
+    tagTransformer.convertToReferenceTags(source, writer);
 
     String actual = writer.toString();
     String expected = new BufferedReader(new InputStreamReader(referenceNamesSample, StandardCharsets.UTF_8)).lines()
         .collect(Collectors.joining("\n"));
+
+    assertThat(actual, isIdenticalTo(expected).ignoreWhitespace());
+  }
+
+  @Test
+  public void shouldKeepReferenceTagsIfOutputFormatIsReference() throws ONIXTagnameConverterException {
+    InputStream referenceTagsSample = getClass().getClassLoader().getResourceAsStream("Onix3sample_refnames.xml");
+    InputStream referenceTagsSampleDuplicate = getClass().getClassLoader().getResourceAsStream("Onix3sample_refnames.xml");
+
+    ONIXTagnameConverter tagTransformer = new ONIXTagnameConverter();
+
+    Source source = new StreamSource(referenceTagsSample);
+    StringWriter writer = new StringWriter();
+    tagTransformer.convertToReferenceTags(source, writer);
+
+    String actual = writer.toString();
+    String expected = new BufferedReader(new InputStreamReader(referenceTagsSampleDuplicate, StandardCharsets.UTF_8)).lines()
+      .collect(Collectors.joining("\n"));
+
+    assertThat(actual, isIdenticalTo(expected).ignoreWhitespace());
+  }
+
+  @Test
+  public void shouldKeepShortTagsIfOutputFormatIsShort() throws ONIXTagnameConverterException {
+    InputStream shortTagsSample = getClass().getClassLoader().getResourceAsStream("Onix3sample_shorttags.xml");
+    InputStream shortTagsSampleDuplicate = getClass().getClassLoader().getResourceAsStream("Onix3sample_shorttags.xml");
+
+    ONIXTagnameConverter tagTransformer = new ONIXTagnameConverter();
+
+    Source source = new StreamSource(shortTagsSample);
+    StringWriter writer = new StringWriter();
+    tagTransformer.convertToShortTags(source, writer);
+
+    String actual = writer.toString();
+    String expected = new BufferedReader(new InputStreamReader(shortTagsSampleDuplicate, StandardCharsets.UTF_8)).lines()
+      .collect(Collectors.joining("\n"));
 
     assertThat(actual, isIdenticalTo(expected).ignoreWhitespace());
   }

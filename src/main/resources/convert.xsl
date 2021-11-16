@@ -7,10 +7,13 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://ns.editeur.org/">
   <xsl:param name="input-path" select="'schemas'" />
   <xsl:param name="result-document" select="'dummy.xml'" />
+<!--  output-format determines whether the result format will be ONIX short tags or reference tags.-->
+<!--  This stylesheet checks for `short` to convert to short tags, otherwise, it converts to reference tags.-->
+  <xsl:param name="output-format" required="yes" />
   <xsl:param name="dtd-path" select="''" />
   <xsl:variable name="new-namespace">
     <xsl:choose>
-      <xsl:when test="local-name(/*)='ONIXMessage'">
+      <xsl:when test="$output-format='short'">
         <xsl:value-of select="replace(namespace-uri(/*),'/reference','/short')" />
       </xsl:when>
       <xsl:otherwise>
@@ -44,7 +47,7 @@
   <xsl:variable name="target">
     <xsl:choose>
       <!-- v1.1 was xsl:when test="/ONIXMessage">short</xsl:when -->
-      <xsl:when test="local-name(/*)='ONIXMessage'">short</xsl:when>
+      <xsl:when test="$output-format='short'">short</xsl:when>
       <xsl:otherwise>reference</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
